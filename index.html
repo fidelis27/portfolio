@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiago Fidelis — Senior Front-end Engineer</title>
+  <meta name="description" content="Senior Front-end Engineer specializing in React, TypeScript, Micro Frontends, and scalable front-end architecture. Open to remote roles at international companies." />
+  <meta property="og:title" content="Thiago Fidelis — Senior Front-end Engineer" />
+  <meta property="og:description" content="Building scalable, high-impact front-end systems for international teams." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0c0d14;
+      --surface:  #13141f;
+      --surface2: #1a1b2e;
+      --border:   #222438;
+      --border2:  #2e3050;
+      --text:     #e8eaf6;
+      --muted:    #7b7fa8;
+      --subtle:   #3d4070;
+      --accent:   #a855f7;
+      --accent2:  #7c3aed;
+      --accent-glow: rgba(168,85,247,0.15);
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --max:      1120px;
+      --radius:   8px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #0c0d14 !important;
+      color-scheme: dark;
+    }
+
+    body {
+      background: #0c0d14 !important;
+      background-color: #0c0d14 !important;
+      color: #e8eaf6 !important;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Garantir que nenhum elemento herde fundo branco */
+    *, *::before, *::after {
+      color-scheme: dark;
+    }
+
+    ::selection { background: #a855f7; color: #fff; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0c0d14; }
+    ::-webkit-scrollbar-thumb { background: #2e3050; border-radius: 4px; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    section { padding: 120px 0; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      border-bottom: 1px solid #222438;
+      background: rgba(12,13,20,0.92) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 24px;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+      color: #e8eaf6; text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: #a855f7; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: #7b7fa8; text-decoration: none; font-size: 13px; font-weight: 500;
+      letter-spacing: 0.02em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #e8eaf6; }
+    .nav-cta {
+      padding: 7px 16px; border-radius: 8px;
+      background: #a855f7; color: #fff; font-size: 13px; font-weight: 600;
+      text-decoration: none; letter-spacing: 0.01em; transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 180px 0 120px;
+      position: relative; overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(168,85,247,0.12) 0%, transparent 70%);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 12px; border-radius: 100px;
+      border: 1px solid #2e3050;
+      background: #13141f;
+      font-size: 12px; font-weight: 500; color: #7b7fa8;
+      margin-bottom: 28px; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #a855f7;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-title {
+      font-size: clamp(42px, 5vw, 64px);
+      font-weight: 600; line-height: 1.08; letter-spacing: -0.03em;
+      color: #e8eaf6; margin-bottom: 24px;
+    }
+    .hero-title em { font-style: normal; color: #a855f7; }
+    .hero-sub {
+      font-size: 17px; line-height: 1.65; color: #7b7fa8;
+      max-width: 480px; margin-bottom: 40px; font-weight: 400;
+    }
+    .hero-sub strong { color: #e8eaf6; font-weight: 500; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      background: #a855f7; color: #fff;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      border: 1px solid #2e3050;
+      background: transparent; color: #e8eaf6;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: #3d4070; background: #13141f; transform: translateY(-1px); }
+
+    /* Hero visual side */
+    .hero-visual {
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .hero-card {
+      width: 100%; max-width: 400px;
+      background: #13141f;
+      border: 1px solid #222438;
+      border-radius: 16px; padding: 28px;
+      position: relative; overflow: hidden;
+    }
+    .hero-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .code-window {
+      background: #080910; border: 1px solid #222438;
+      border-radius: 8px; padding: 16px; font-family: var(--font-mono);
+      font-size: 12px; line-height: 1.7; overflow: hidden;
+    }
+    .code-header {
+      display: flex; gap: 6px; margin-bottom: 14px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+    .kw { color: #c792ea; }
+    .fn { color: #82aaff; }
+    .str { color: #a855f7; }
+    .cm { color: #7b7fa8; }
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-top: 16px;
+    }
+    .hero-stat {
+      background: #080910; border: 1px solid #222438;
+      border-radius: 8px; padding: 14px;
+    }
+    .hero-stat-num {
+      font-size: 22px; font-weight: 600; color: #e8eaf6;
+      font-family: var(--font-mono); letter-spacing: -0.02em;
+    }
+    .hero-stat-label { font-size: 11px; color: #7b7fa8; margin-top: 2px; }
+
+    /* Scanline decoration */
+    .scanline {
+      position: absolute; top: 50%; left: 0; right: 0;
+      height: 1px; background: linear-gradient(90deg, transparent, #a855f7, transparent);
+      opacity: 0; animation: scan 4s ease-in-out 1s forwards;
+      pointer-events: none;
+    }
+    @keyframes scan {
+      0% { opacity: 0; top: 10%; }
+      20% { opacity: 0.4; }
+      80% { opacity: 0.4; }
+      100% { opacity: 0; top: 90%; }
+    }
+
+    /* ── LOGOS / SOCIAL PROOF ── */
+    .logos-bar {
+      border-top: 1px solid #222438;
+      border-bottom: 1px solid #222438;
+      padding: 28px 0; background: #0c0d14;
+    }
+    .logos-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
+    }
+    .logos-label { font-size: 11px; color: #7b7fa8; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+    .logos-list { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+    .tech-pill {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      color: #3d4070; letter-spacing: 0.04em;
+      padding: 5px 12px; border: 1px solid #222438; border-radius: 100px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tech-pill:hover { color: #e8eaf6; border-color: #2e3050; }
+
+    /* ── SECTION HEADER ── */
+    .section-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #a855f7;
+      font-family: var(--font-mono); margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 600;
+      letter-spacing: -0.025em; line-height: 1.1; color: #e8eaf6;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 16px; color: #7b7fa8; line-height: 1.65; max-width: 560px;
+    }
+    .section-header { margin-bottom: 72px; }
+
+    /* ── ABOUT ── */
+    #about { background: #0c0d14; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .about-text p {
+      font-size: 16px; color: #7b7fa8; line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .about-text p strong { color: #e8eaf6; font-weight: 500; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-right { display: flex; flex-direction: column; gap: 16px; }
+    .about-card {
+      background: #1a1b2e; border: 1px solid #222438;
+      border-radius: 8px; padding: 20px 24px;
+    }
+    .about-card-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #7b7fa8;
+      font-family: var(--font-mono); margin-bottom: 10px;
+    }
+    .about-card-val {
+      font-size: 14px; color: #e8eaf6; font-weight: 500;
+    }
+    .lang-grid { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+    .lang-tag {
+      font-size: 12px; padding: 3px 10px; border-radius: 100px;
+      background: #222438; color: #7b7fa8;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: #0c0d14; }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: #222438;
+    }
+    .timeline-item {
+      padding-left: 32px; position: relative; margin-bottom: 56px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -5px; top: 6px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: #1a1b2e; border: 2px solid #2e3050;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .timeline-item:hover .timeline-dot { background: #a855f7; border-color: #a855f7; }
+    .timeline-period {
+      font-family: var(--font-mono); font-size: 11px; color: #7b7fa8;
+      letter-spacing: 0.04em; margin-bottom: 8px;
+    }
+    .timeline-role {
+      font-size: 18px; font-weight: 600; color: #e8eaf6;
+      letter-spacing: -0.01em; margin-bottom: 4px;
+    }
+    .timeline-company {
+      font-size: 13px; color: #a855f7; font-weight: 500; margin-bottom: 16px;
+    }
+    .timeline-body {
+      font-size: 14px; color: #7b7fa8; line-height: 1.75; margin-bottom: 16px;
+    }
+    .timeline-body strong { color: #e8eaf6; font-weight: 500; }
+    .tag-list { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      padding: 3px 10px; border-radius: 4px;
+      background: #13141f; border: 1px solid #222438;
+      color: #7b7fa8;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: #13141f; border-top: 1px solid #222438; border-bottom: 1px solid #222438; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .skill-card {
+      background: #1a1b2e; border: 1px solid #222438;
+      border-radius: 8px; padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .skill-card:hover { border-color: #2e3050; }
+    .skill-cat-icon {
+      width: 36px; height: 36px; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center;
+      background: #13141f; border: 1px solid #222438;
+      border-radius: 8px; font-size: 16px;
+    }
+    .skill-cat { font-size: 13px; font-weight: 600; color: #e8eaf6; margin-bottom: 14px; }
+    .skill-items { display: flex; flex-direction: column; gap: 8px; }
+    .skill-item {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .skill-name { font-size: 13px; color: #7b7fa8; }
+    .skill-bar-wrap { width: 80px; height: 3px; background: #2e3050; border-radius: 3px; }
+    .skill-bar { height: 100%; background: #a855f7; border-radius: 3px; }
+
+    /* ── PROJECTS ── */
+    #projects { background: #0c0d14; }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .project-card {
+      background: #13141f; border: 1px solid #222438;
+      border-radius: 12px; padding: 32px; cursor: pointer;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 100% 0%, rgba(168,85,247,0.09) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.3s; pointer-events: none;
+    }
+    .project-card:hover { border-color: #2e3050; transform: translateY(-3px); }
+    .project-card:hover::before { opacity: 1; }
+    .project-card.featured { grid-column: span 2; }
+    .project-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #a855f7; font-family: var(--font-mono);
+      margin-bottom: 16px;
+    }
+    .project-title { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: #e8eaf6; margin-bottom: 12px; }
+    .project-desc { font-size: 14px; color: #7b7fa8; line-height: 1.7; margin-bottom: 24px; }
+    .project-metrics { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+    .metric { }
+    .metric-val { font-family: var(--font-mono); font-size: 20px; font-weight: 600; color: #e8eaf6; }
+    .metric-label { font-size: 11px; color: #7b7fa8; margin-top: 2px; }
+    .project-footer {
+      padding-top: 20px; border-top: 1px solid #222438;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .read-more {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500; color: #e8eaf6;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .read-more:hover { color: #a855f7; }
+    .read-more svg { transition: transform 0.2s; }
+    .read-more:hover svg { transform: translateX(3px); }
+
+    /* ── CASE STUDY MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 40px 24px; overflow-y: auto;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: #13141f; border: 1px solid #2e3050;
+      border-radius: 16px; width: 100%; max-width: 760px;
+      padding: 48px; position: relative;
+      transform: translateY(20px); transition: transform 0.3s;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-close {
+      position: absolute; top: 20px; right: 20px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #1a1b2e; border: 1px solid #222438;
+      color: #7b7fa8; cursor: pointer; font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: #e8eaf6; }
+    .modal-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #a855f7; font-family: var(--font-mono); margin-bottom: 12px; }
+    .modal-title { font-size: 30px; font-weight: 600; letter-spacing: -0.025em; color: #e8eaf6; margin-bottom: 8px; }
+    .modal-sub { font-size: 15px; color: #7b7fa8; line-height: 1.65; margin-bottom: 40px; }
+    .case-section { margin-bottom: 36px; }
+    .case-section h3 { font-size: 14px; font-weight: 600; color: #e8eaf6; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.06em; font-family: var(--font-mono); }
+    .case-section p { font-size: 14px; color: #7b7fa8; line-height: 1.8; }
+    .case-section p + p { margin-top: 10px; }
+    .case-section strong { color: #e8eaf6; font-weight: 500; }
+    .case-arch {
+      background: #080910; border: 1px solid #222438;
+      border-radius: 8px; padding: 20px; font-family: var(--font-mono);
+      font-size: 12px; line-height: 1.8; color: #7b7fa8; margin-top: 12px;
+    }
+    .case-arch .hl { color: #a855f7; }
+    .case-metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .case-metric {
+      background: #1a1b2e; border: 1px solid #222438;
+      border-radius: 8px; padding: 16px; text-align: center;
+    }
+    .case-metric-val { font-family: var(--font-mono); font-size: 24px; font-weight: 600; color: #a855f7; }
+    .case-metric-label { font-size: 11px; color: #7b7fa8; margin-top: 4px; }
+
+    /* ── NUMBERS ── */
+    #numbers { background: #0c0d14; padding: 80px 0; }
+    .numbers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+    .number-item {
+      padding: 32px 24px; border-right: 1px solid #222438;
+      text-align: center;
+    }
+    .number-item:last-child { border-right: none; }
+    .number-val { font-family: var(--font-mono); font-size: 32px; font-weight: 600; color: #e8eaf6; letter-spacing: -0.03em; }
+    .number-label { font-size: 12px; color: #7b7fa8; margin-top: 6px; line-height: 1.4; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: #13141f; border-top: 1px solid #222438; border-bottom: 1px solid #222438; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testimonial-card {
+      background: #0c0d14; border: 1px solid #222438;
+      border-radius: 12px; padding: 28px;
+    }
+    .testimonial-quote { font-size: 14px; color: #7b7fa8; line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #2e3050; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600; color: #7b7fa8;
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 13px; font-weight: 600; color: #e8eaf6; }
+    .testimonial-role { font-size: 11px; color: #7b7fa8; }
+
+    /* ── CONTACT ── */
+    #contact { background: #0c0d14; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .contact-left p { font-size: 15px; color: #7b7fa8; line-height: 1.7; margin-bottom: 32px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px; color: #7b7fa8; text-decoration: none;
+      padding: 14px 16px; border-radius: 8px;
+      border: 1px solid #222438; background: #1a1b2e;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { border-color: #2e3050; color: #e8eaf6; }
+    .contact-link-icon { font-size: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 12px; font-weight: 500; color: #7b7fa8; margin-bottom: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .form-input, .form-textarea {
+      width: 100%; padding: 12px 14px;
+      background: #1a1b2e; border: 1px solid #222438;
+      border-radius: 8px; color: #e8eaf6; font-family: var(--font-sans);
+      font-size: 14px; outline: none; resize: vertical;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: #a855f7; }
+    .form-textarea { min-height: 120px; }
+    .form-submit {
+      width: 100%; padding: 12px; border-radius: 8px;
+      background: #a855f7; border: none; color: #fff;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid #222438; padding: 32px 0;
+    }
+    .footer-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-size: 12px; color: #7b7fa8; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: #7b7fa8; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #e8eaf6; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid #222438; margin: 0; }
+
+    /* ── FADE IN ── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── NAV SCROLL SPY ── */
+    .nav-links a.active { color: #e8eaf6; }
+
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      display: flex; align-items: center;
+      background: #13141f; border: 1px solid #222438;
+      border-radius: 6px; overflow: hidden; flex-shrink: 0;
+    }
+    .lang-btn {
+      padding: 5px 10px; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.06em; cursor: pointer; border: none;
+      background: transparent; color: #7b7fa8;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-btn.active { background: #a855f7; color: #fff; }
+    .lang-btn:hover:not(.active) { color: #e8eaf6; }
+
+    /* ── MOBILE MENU ── */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 8px; border: 1px solid #222438; border-radius: 8px;
+      background: transparent;
+    }
+    .nav-hamburger span {
+      display: block; width: 18px; height: 1.5px; background: #7b7fa8;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu {
+      position: fixed; top: 60px; left: 0; right: 0; z-index: 99;
+      background: rgba(12,13,20,0.97); backdrop-filter: blur(20px);
+      border-bottom: 1px solid #222438;
+      padding: 8px 24px 20px; display: flex; flex-direction: column;
+      transform: translateY(-8px); opacity: 0; pointer-events: none;
+      transition: transform 0.22s, opacity 0.22s;
+    }
+    .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a {
+      padding: 14px 0; font-size: 16px; color: #7b7fa8; text-decoration: none;
+      border-bottom: 1px solid #222438; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #e8eaf6; }
+
+    /* ── AI ENGINEERING BANNER ── */
+    .ai-banner {
+      background: #13141f;
+      border-top: 1px solid #222438; border-bottom: 1px solid #222438;
+      padding: 80px 0;
+    }
+    .ai-banner-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .ai-banner h2 {
+      font-size: clamp(24px, 2.8vw, 36px); font-weight: 600;
+      letter-spacing: -0.02em; color: #e8eaf6; margin-bottom: 16px; line-height: 1.15;
+    }
+    .ai-banner p { font-size: 15px; color: #7b7fa8; line-height: 1.75; }
+    .ai-banner p strong { color: #e8eaf6; font-weight: 500; }
+    .ai-tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ai-tool {
+      background: #1a1b2e; border: 1px solid #222438;
+      border-radius: 8px; padding: 16px;
+      display: flex; align-items: flex-start; gap: 10px;
+      transition: border-color 0.2s;
+    }
+    .ai-tool:hover { border-color: #2e3050; }
+    .ai-tool-icon { font-size: 20px; flex-shrink: 0; }
+    .ai-tool-name { font-size: 13px; font-weight: 600; color: #e8eaf6; }
+    .ai-tool-desc { font-size: 11px; color: #7b7fa8; margin-top: 3px; line-height: 1.5; }
+
+    /* ── EDUCATION ── */
+    #education { background: #0c0d14; }
+    .education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .edu-block-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #7b7fa8; font-family: var(--font-mono); margin-bottom: 20px;
+    }
+    .edu-item {
+      padding: 20px 24px;
+      background: #1a1b2e; border: 1px solid #222438;
+      border-radius: 8px; margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-item:hover { border-color: #2e3050; }
+    .edu-degree { font-size: 14px; font-weight: 600; color: #e8eaf6; margin-bottom: 5px; }
+    .edu-school { font-size: 13px; color: #a855f7; font-weight: 500; margin-bottom: 5px; }
+    .edu-period { font-size: 11px; color: #7b7fa8; font-family: var(--font-mono); }
+    .cert-list { display: flex; flex-direction: column; gap: 8px; }
+    .cert-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px;
+      background: #1a1b2e; border: 1px solid #222438;
+      border-radius: 8px; font-size: 13px; color: #7b7fa8;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .cert-item:hover { border-color: #2e3050; color: #e8eaf6; }
+    .cert-dot { width: 5px; height: 5px; border-radius: 50%; background: #a855f7; flex-shrink: 0; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-notice {
+      background: #1a1b2e; border: 1px solid #2e3050;
+      border-radius: 12px; padding: 48px 40px; text-align: center;
+    }
+    .testimonials-notice-icon { font-size: 28px; margin-bottom: 16px; }
+    .testimonials-notice p {
+      font-size: 14px; color: #7b7fa8; line-height: 1.75;
+      max-width: 440px; margin: 0 auto 24px;
+    }
+    .testimonials-notice p strong { color: #e8eaf6; font-weight: 500; }
+    .testimonials-notice a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      border: 1px solid #2e3050; color: #e8eaf6;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .testimonials-notice a:hover { border-color: #a855f7; background: #13141f; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; }
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .numbers-grid { grid-template-columns: repeat(3, 1fr); }
+      .number-item:nth-child(3) { border-right: none; }
+      nav .nav-links { display: none; }
+      nav .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .education-grid { grid-template-columns: 1fr; gap: 40px; }
+      .ai-banner-inner { grid-template-columns: 1fr; gap: 40px; }
+      .ai-tools-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 80px 0; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      .case-metrics-grid { grid-template-columns: 1fr; }
+      .ai-tools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">tf<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#projects" data-i18n="nav.work">Work</a></li>
+      <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#education" data-i18n="nav.education">Education</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta" data-i18n="nav.cta">Hire me</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-pt" onclick="setLang('pt')">PT</button>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMobile()" data-i18n="nav.about">About</a>
+  <a href="#experience" onclick="closeMobile()" data-i18n="nav.experience">Experience</a>
+  <a href="#projects" onclick="closeMobile()" data-i18n="nav.work">Work</a>
+  <a href="#skills" onclick="closeMobile()" data-i18n="nav.skills">Skills</a>
+  <a href="#education" onclick="closeMobile()" data-i18n="nav.education">Education</a>
+  <a href="#contact" onclick="closeMobile()" data-i18n="nav.contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="scanline"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left fade-in">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          Open to remote opportunities
+        </div>
+        <h1 class="hero-title">
+          Thiago<br>Fidelis<br><em>Frontend</em><br>Engineer
+        </h1>
+        <p class="hero-sub" data-i18n="hero.sub">
+          I build <strong>scalable front-end systems</strong> that serve millions of users — from architecture to production. Focused on impact, not just implementation.
+        </p>
+        <div class="hero-actions">
+          <a id="resume-btn" href="https://drive.google.com/file/d/1nm67wzixhf92T1DNdoaj79qGfO-6crhK/view?usp=drivesdk" target="_blank" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="hero.resume">Download Resume</span>
+          </a>
+          <a href="https://linkedin.com" class="btn-secondary" target="_blank">LinkedIn</a>
+          <a href="https://github.com" class="btn-secondary" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <div class="hero-visual fade-in" style="transition-delay:0.15s">
+        <div class="hero-card">
+          <div class="code-window">
+            <div class="code-header">
+              <div class="dot dot-r"></div>
+              <div class="dot dot-y"></div>
+              <div class="dot dot-g"></div>
+            </div>
+            <div>
+              <span class="cm">// session-replay.module.ts</span><br>
+              <span class="kw">import</span> { <span class="fn">SessionRecorder</span> } <span class="kw">from</span> <span class="str">'@replay/core'</span>;<br>
+              <span class="kw">import</span> { <span class="fn">usePerformance</span> } <span class="kw">from</span> <span class="str">'@hooks'</span>;<br><br>
+              <span class="kw">export const</span> <span class="fn">initReplay</span> = (<br>
+              &nbsp;&nbsp;<span class="fn">config</span>: <span class="kw">ReplayConfig</span><br>
+              ) <span class="kw">=></span> {<br>
+              &nbsp;&nbsp;<span class="cm">// scalable · observable · reliable</span><br>
+              &nbsp;&nbsp;<span class="kw">return</span> <span class="fn">SessionRecorder</span>.<span class="fn">create</span>({<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;...config,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="fn">sampling</span>: <span class="str">'adaptive'</span>,<br>
+              &nbsp;&nbsp;});<br>
+              };
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">6+</div>
+              <div class="hero-stat-label" data-i18n="hero.stat1">Years of experience</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">ML</div>
+              <div class="hero-stat-label" data-i18n="hero.stat2">Currently at Mercado Livre</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">3</div>
+              <div class="hero-stat-label" data-i18n="hero.stat3">Languages spoken</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">PT·EN·ES</div>
+              <div class="hero-stat-label" data-i18n="hero.stat4">Cross-cultural collaboration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS BAR -->
+<div class="logos-bar">
+  <div class="logos-inner">
+    <span class="logos-label" data-i18n="logos.label">Core Stack</span>
+    <div class="logos-list">
+      <span class="tech-pill">React</span>
+      <span class="tech-pill">TypeScript</span>
+      <span class="tech-pill">Micro Frontends</span>
+      <span class="tech-pill">Next.js</span>
+      <span class="tech-pill">Storybook</span>
+      <span class="tech-pill">n8n</span>
+      <span class="tech-pill">Jenkins · Docker · K8s</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <div class="section-eyebrow" data-i18n="about.eyebrow">About</div>
+        <h2 class="section-title" data-i18n="about.title">Engineering at scale,<br>with intent.</h2>
+        <p data-i18n="about.p1">I'm a Software Engineer who's spent the last 6+ years thinking deeply about how front-end systems are built — not just whether they work, but <strong>why they hold up under pressure</strong>. I've shipped production code that millions of people rely on, and I've felt the weight of that responsibility.</p>
+        <p data-i18n="about.p2">My work spans the full front-end spectrum: architecting micro frontends, leading design systems, optimizing Core Web Vitals, and mentoring engineers. But the thread that connects it all is a obsession with <strong>software quality</strong> — not as a constraint, but as a craft.</p>
+        <p data-i18n="about.p3">I work well across cultures and time zones. I've collaborated with distributed teams across Latin America and understand what it takes to build trust asynchronously. <strong>Remote-first is not a compromise for me — it's where I do my best work.</strong></p>
+      </div>
+      <div class="about-right fade-in" style="transition-delay:0.1s">
+        <div class="about-card">
+          <div class="about-card-label" data-i18n="about.card1label">Current Focus</div>
+          <div class="about-card-val" data-i18n="about.card1val">Senior Front-end Engineering · Remote roles at international companies</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label" data-i18n="about.card2label">Location</div>
+          <div class="about-card-val" data-i18n="about.card2val">Brazil — available for any timezone</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label" data-i18n="about.card3label">Languages</div>
+          <div class="lang-grid">
+            <span class="lang-tag" data-i18n="about.lang1">Portuguese (native)</span>
+            <span class="lang-tag" data-i18n="about.lang2">English (intermediate)</span>
+            <span class="lang-tag" data-i18n="about.lang3">Spanish (intermediate)</span>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label" data-i18n="about.card4label">Availability</div>
+          <div class="about-card-val" style="color: #a855f7;" data-i18n="about.card4val">● Available now</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow" data-i18n="exp.eyebrow">Experience</div>
+      <h2 class="section-title" data-i18n="exp.title">Where I've created impact.</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period" data-i18n="exp.ml.period">Oct 2022 — Present</div>
+        <div class="timeline-role">Senior Software Engineer <span style="color:#7b7fa8;font-weight:400;font-size:13px" data-i18n="exp.ml.promo">· promoted Jan 2025</span></div>
+        <div class="timeline-company">Mercado Livre · Remote</div>
+        <div class="timeline-body" data-i18n="exp.ml.body">
+          Develop and evolve <strong>micro-frontend applications</strong> using React and TypeScript, following Clean Architecture principles and maintainable frontend patterns. Design scalable frontend solutions for large product ecosystems, supporting modularity, code quality, and long-term maintainability.<br><br>
+          Collaborate with <strong>Spanish-speaking teams across Latin America</strong> during planning, refinement, and delivery routines. Contribute to product evolution by implementing new features, validating business hypotheses, and improving experiences in beta and post-launch phases.<br><br>
+          Use <strong>AI-assisted development tools</strong> such as Claude Code, Codex, and Cursor, as well as n8n automation workflows, to improve engineering productivity and delivery flow. Support application reliability through monitoring with New Relic, Kibana, Grafana, and Datadog.
+        </div>
+        <div class="tag-list">
+          <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Micro Frontends</span><span class="tag">Clean Architecture</span><span class="tag">New Relic</span><span class="tag">Kibana</span><span class="tag">Grafana</span><span class="tag">Datadog</span><span class="tag">n8n</span><span class="tag">Claude Code</span>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period" data-i18n="exp.inv.period">Nov 2020 — Oct 2022</div>
+        <div class="timeline-role">Mid Frontend Developer <span style="color:#7b7fa8;font-weight:400;font-size:13px" data-i18n="exp.inv.promo">· started as Junior (Nov 2020)</span></div>
+        <div class="timeline-company">Invillia · Remote</div>
+        <div class="timeline-body" data-i18n="exp.inv.body">
+          Built micro-frontends using <strong>Next.js, React, and JavaScript</strong>, contributing to frontend products in active evolution. Helped define frontend architecture for new services using Docker and Kubernetes as part of the delivery environment.<br><br>
+          Worked with CI/CD practices using Jenkins and supported application monitoring with <strong>New Relic and Splunk</strong>. Collaborated in agile delivery routines using Kanban to manage workflow and improve team visibility.
+        </div>
+        <div class="tag-list">
+          <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Jenkins</span><span class="tag">New Relic</span><span class="tag">Splunk</span><span class="tag">Kanban</span>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Jun 2011 — Nov 2020</div>
+        <div class="timeline-role" data-i18n="exp.casa.role">Public Employee</div>
+        <div class="timeline-company">Fundação CASA · On-site</div>
+        <div class="timeline-body" data-i18n="exp.casa.body">
+          Built a strong foundation in adaptability, responsibility, and public-service discipline — values that shaped my approach to engineering before transitioning into technology in 2020.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow" data-i18n="skills.eyebrow">Skills</div>
+      <h2 class="section-title" data-i18n="skills.title">Expertise across<br>the full front-end spectrum.</h2>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card fade-in">
+        <div class="skill-cat-icon">⚛</div>
+        <div class="skill-cat">Frontend Core</div>
+        <div class="skill-items">
+          <div class="skill-item"><span class="skill-name">React / React 19</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:97%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">TypeScript</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Next.js</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">JavaScript (ES2024)</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:97%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in" style="transition-delay:0.05s">
+        <div class="skill-cat-icon">🏗</div>
+        <div class="skill-cat">Architecture</div>
+        <div class="skill-items">
+          <div class="skill-item"><span class="skill-name">Micro Frontends</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Clean Architecture</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Design Systems</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Module Federation</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in" style="transition-delay:0.10s">
+        <div class="skill-cat-icon">🧪</div>
+        <div class="skill-cat">Testing</div>
+        <div class="skill-items">
+          <div class="skill-item"><span class="skill-name">Jest / Vitest</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">React Testing Library</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Cypress / Playwright</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Storybook</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in" style="transition-delay:0.05s">
+        <div class="skill-cat-icon">⚡</div>
+        <div class="skill-cat">Performance</div>
+        <div class="skill-items">
+          <div class="skill-item"><span class="skill-name">Core Web Vitals</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Bundle optimization</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">New Relic / Kibana</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Lazy loading / SSR</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:87%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in" style="transition-delay:0.10s">
+        <div class="skill-cat-icon">☁</div>
+        <div class="skill-cat">DevOps & Delivery</div>
+        <div class="skill-items">
+          <div class="skill-item"><span class="skill-name">Jenkins · CI/CD</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Docker</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Kubernetes</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Scrum · Kanban</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in" style="transition-delay:0.15s">
+        <div class="skill-cat-icon">🤖</div>
+        <div class="skill-cat">AI & Automation</div>
+        <div class="skill-items">
+          <div class="skill-item"><span class="skill-name">Claude Code · Codex · Cursor</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">n8n workflow automation</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">AI-assisted development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Developer productivity</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow" data-i18n="projects.eyebrow">Work</div>
+      <h2 class="section-title" data-i18n="projects.title">Projects that moved<br>the needle.</h2>
+      <p class="section-sub" data-i18n="projects.sub">Case studies focused on real problems, architectural decisions, and measurable results — not just tech stacks.</p>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card featured fade-in" onclick="openModal('replay')">
+        <div class="project-tag" data-i18n="proj.replay.tag">★ Featured Case Study</div>
+        <div class="project-title" data-i18n="proj.replay.title">Session Replay Module</div>
+        <div class="project-desc" data-i18n="proj.replay.desc">Participated in building a production-grade session replay system at Mercado Livre — capturing user interactions in real time as part of the observability layer. Focused on performance, architecture, and monitoring integration.</div>
+        <div class="project-footer">
+          <div class="tag-list">
+            <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">New Relic</span><span class="tag">Kibana</span><span class="tag">Storybook</span>
+          </div>
+          <a href="#" class="read-more" onclick="event.preventDefault(); openModal('replay')">
+            <span data-i18n="proj.readmore">Read case study</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card fade-in" onclick="openModal('ds')">
+        <div class="project-tag" data-i18n="proj.case">Case Study</div>
+        <div class="project-title" data-i18n="proj.ds.title">Component Library &amp; Design System</div>
+        <div class="project-desc" data-i18n="proj.ds.desc">Contributed to a shared component library used across product teams — working with Storybook documentation, design tokens, component reusability, and engineering standards.</div>
+        <div class="project-footer">
+          <div class="tag-list"><span class="tag">Storybook</span><span class="tag">TypeScript</span><span class="tag">Design Tokens</span></div>
+          <a href="#" class="read-more" onclick="event.preventDefault(); openModal('ds')">
+            <span data-i18n="proj.readmore">Read case study</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card fade-in" onclick="openModal('mfe')">
+        <div class="project-tag" data-i18n="proj.case">Case Study</div>
+        <div class="project-title" data-i18n="proj.mfe.title">Micro Frontend Architecture</div>
+        <div class="project-desc" data-i18n="proj.mfe.desc">Worked with micro-frontend architecture using React and TypeScript at scale — contributing to modularity, independent deployability, and integration between applications in a large product ecosystem.</div>
+        <div class="project-footer">
+          <div class="tag-list"><span class="tag">Micro Frontends</span><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span></div>
+          <a href="#" class="read-more" onclick="event.preventDefault(); openModal('mfe')">
+            <span data-i18n="proj.readmore">Read case study</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div id="numbers">
+  <div class="container">
+    <div class="numbers-grid">
+      <div class="number-item fade-in">
+        <div class="number-val">6+</div>
+        <div class="number-label" data-i18n="num.1">Years building software</div>
+      </div>
+      <div class="number-item fade-in">
+        <div class="number-val">2</div>
+        <div class="number-label" data-i18n="num.2">Companies in tech (Invillia + Mercado Livre)</div>
+      </div>
+      <div class="number-item fade-in">
+        <div class="number-val">LATAM</div>
+        <div class="number-label" data-i18n="num.3">Teams across Latin America</div>
+      </div>
+      <div class="number-item fade-in">
+        <div class="number-val">3</div>
+        <div class="number-label" data-i18n="num.4">Languages spoken</div>
+      </div>
+      <div class="number-item fade-in">
+        <div class="number-val">∞</div>
+        <div class="number-label" data-i18n="num.5">Commitment to quality</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background: #13141f; border-top: 1px solid #222438; border-bottom: 1px solid #222438;">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow" data-i18n="test.eyebrow">Testimonials</div>
+      <h2 class="section-title" data-i18n="test.title">What colleagues say.</h2>
+    </div>
+    <div class="testimonials-notice fade-in">
+      <div class="testimonials-notice-icon">💬</div>
+      <p data-i18n="test.notice">
+        I prefer to keep this section honest. <strong>Real recommendations from people I've worked with</strong> are on my LinkedIn profile — engineers, tech leads, and product managers I've collaborated with at Mercado Livre and Invillia.
+      </p>
+      <a href="https://linkedin.com/in/fidelis27" target="_blank">
+        <span data-i18n="test.link">View recommendations on LinkedIn</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- AI ENGINEERING BANNER -->
+<div class="ai-banner">
+  <div class="ai-banner-inner">
+    <div class="fade-in">
+      <div class="section-eyebrow" data-i18n="ai.eyebrow">AI-Assisted Engineering</div>
+      <h2 data-i18n="ai.title">Engineering with AI as<br>a force multiplier.</h2>
+      <p data-i18n="ai.body">I actively use AI tools and automation in my daily workflow — not as a shortcut, but to <strong>eliminate repetitive overhead and focus on high-value engineering decisions</strong>. This is part of how I work at Mercado Livre today.</p>
+    </div>
+    <div class="ai-tools-grid fade-in" style="transition-delay:0.1s">
+      <div class="ai-tool">
+        <div class="ai-tool-icon">⚡</div>
+        <div>
+          <div class="ai-tool-name">Claude Code</div>
+          <div class="ai-tool-desc" data-i18n="ai.tool1">AI-assisted development & code generation</div>
+        </div>
+      </div>
+      <div class="ai-tool">
+        <div class="ai-tool-icon">🤖</div>
+        <div>
+          <div class="ai-tool-name">n8n</div>
+          <div class="ai-tool-desc" data-i18n="ai.tool2">Workflow automation & developer productivity</div>
+        </div>
+      </div>
+      <div class="ai-tool">
+        <div class="ai-tool-icon">🧠</div>
+        <div>
+          <div class="ai-tool-name">Cursor</div>
+          <div class="ai-tool-desc" data-i18n="ai.tool3">AI-powered editor for faster iteration</div>
+        </div>
+      </div>
+      <div class="ai-tool">
+        <div class="ai-tool-icon">💡</div>
+        <div>
+          <div class="ai-tool-name">Codex</div>
+          <div class="ai-tool-desc" data-i18n="ai.tool4">Code completion & generation workflows</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-eyebrow" data-i18n="edu.eyebrow">Education & Certifications</div>
+      <h2 class="section-title" data-i18n="edu.title">Foundation &amp; continuous learning.</h2>
+    </div>
+    <div class="education-grid">
+      <div class="fade-in">
+        <div class="edu-block-title" data-i18n="edu.academic">Academic</div>
+        <div class="edu-item">
+          <div class="edu-degree" data-i18n="edu.degree">Technologist in Systems Analysis and Development</div>
+          <div class="edu-school">Fatec Taquaritinga</div>
+          <div class="edu-period">Feb 2011 — Dec 2014</div>
+        </div>
+      </div>
+      <div class="fade-in" style="transition-delay:0.1s">
+        <div class="edu-block-title" data-i18n="edu.certs">Certifications</div>
+        <div class="cert-list">
+          <div class="cert-item"><div class="cert-dot"></div>Front-End Web Developer</div>
+          <div class="cert-item"><div class="cert-dot"></div>Programming Logic Fundamentals</div>
+          <div class="cert-item"><div class="cert-dot"></div>Developing Applications with .NET</div>
+          <div class="cert-item"><div class="cert-dot"></div>Basic Development in Java</div>
+          <div class="cert-item"><div class="cert-dot"></div>First Steps with .NET + C#</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left fade-in">
+        <div class="section-eyebrow" data-i18n="contact.eyebrow">Contact</div>
+        <h2 class="section-title" data-i18n="contact.title">Let's build something<br>worth shipping.</h2>
+        <p data-i18n="contact.sub">I'm currently open to senior front-end roles at international companies — remote, full-time. If you're building something ambitious and care about software quality, I'd love to talk.</p>
+        <div class="contact-links">
+          <a href="mailto:thiago.fidelis27@gmail.com" class="contact-link">
+            <span class="contact-link-icon">✉</span>
+            thiago.fidelis27@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/fidelis27" class="contact-link" target="_blank">
+            <span class="contact-link-icon">in</span>
+            linkedin.com/in/fidelis27
+          </a>
+          <a href="https://github.com" class="contact-link" target="_blank">
+            <span class="contact-link-icon">⌥</span>
+            github.com/thiagofidelis
+          </a>
+        </div>
+      </div>
+      <div class="fade-in" style="transition-delay:0.1s">
+        <div class="form-group">
+          <label class="form-label" data-i18n="form.name">Name</label>
+          <input class="form-input" type="text" data-i18n-placeholder="form.name.ph" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="form.email">Email</label>
+          <input class="form-input" type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="form.msg">Message</label>
+          <textarea class="form-textarea" data-i18n-placeholder="form.msg.ph" placeholder="Tell me about the role or project..."></textarea>
+        </div>
+        <button class="form-submit" data-i18n="form.submit">Send message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy" data-i18n="footer.copy">© 2026 Thiago Fidelis · Built with intent.</span>
+    <div class="footer-links">
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/fidelis27" target="_blank">LinkedIn</a>
+      <a href="https://drive.google.com/file/d/1nm67wzixhf92T1DNdoaj79qGfO-6crhK/view?usp=drivesdk" id="footer-resume" target="_blank" data-i18n="footer.resume">Resume</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CASE STUDY MODALS -->
+<div class="modal-overlay" id="modal-replay" onclick="closeModal(event, 'replay')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal(null, 'replay')">✕</button>
+    <div class="modal-eyebrow">Case Study · Session Replay</div>
+    <div class="modal-title">Building Observability at Scale</div>
+    <div class="modal-sub">My work on a session replay module at Mercado Livre — focused on real-time user interaction capture, front-end performance, and monitoring integration.</div>
+
+    <div class="case-section">
+      <h3>The Problem</h3>
+      <p>The product team needed a reliable way to understand user behavior in production after each deploy — bug reports were vague and reproduction steps were hard to gather. The challenge was building a session capture system that could work at the scale of Mercado Livre without degrading performance for end users or creating compliance risk.</p>
+    </div>
+
+    <div class="case-section">
+      <h3>Architecture</h3>
+      <div class="case-arch">
+        <span class="hl">Browser</span><br>
+        └── Event capture layer (React hooks + DOM observation)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;└── Throttled event queue (performance-aware)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;└── Serialization pipeline (incremental snapshots)<br>
+        <br>
+        <span class="hl">Observability</span><br>
+        └── New Relic (APM + custom events)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;└── Kibana (event stream dashboards)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;└── Grafana · Datadog (monitoring &amp; alerting)
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h3>Key Engineering Decisions</h3>
+      <p><strong>Performance-aware capture:</strong> Capturing events needed to be invisible to the user. The solution used throttling and idle-time scheduling to avoid competing with the main thread during critical user interactions.</p>
+      <p><strong>Storybook-driven components:</strong> Every UI element of the replay interface was developed and documented in Storybook, enabling design review and QA without requiring live sessions.</p>
+      <p><strong>Monitoring integration:</strong> The module was wired into New Relic, Kibana, Grafana, and Datadog from the start — making capture health and failure rates visible to the team in real time.</p>
+    </div>
+
+    <div class="case-section">
+      <h3>Trade-offs & Lessons</h3>
+      <p>The hardest trade-off was between capture completeness and performance impact. Every additional event type captured had a cost. We prioritized high-signal interactions (errors, rage clicks, key flows) over exhaustive recording — keeping the module lean and the user experience unaffected.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-ds" onclick="closeModal(event, 'ds')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal(null, 'ds')">✕</button>
+    <div class="modal-eyebrow">Case Study · Design System</div>
+    <div class="modal-title">Component Library That Scales With the Team</div>
+    <div class="modal-sub">Building shared UI infrastructure — design tokens, Storybook-driven components, and engineering standards that multiple teams could trust and contribute to.</div>
+
+    <div class="case-section">
+      <h3>The Problem</h3>
+      <p>Multiple product teams were building UI independently, leading to visual inconsistency and duplicated effort. There was no single source of truth for how the product should look or behave, and design reviews were spending time correcting drift instead of evaluating new work.</p>
+    </div>
+
+    <div class="case-section">
+      <h3>Approach</h3>
+      <p><strong>Design tokens first:</strong> Before writing any component code, alignment happened on a token layer — spacing, color, typography, border-radius — all versioned and exported from a single source, keeping the library in sync with design.</p>
+      <p><strong>Storybook as the contract:</strong> Every component was built in isolation in Storybook with documented props, usage guidelines, and accessibility notes. Storybook became the shared review surface for design and engineering.</p>
+      <p><strong>ESLint and TypeScript as guardrails:</strong> Strong typing and linting rules enforced API consistency across components, catching misuse at development time rather than in production.</p>
+    </div>
+
+    <div class="case-section">
+      <h3>Trade-offs & Lessons</h3>
+      <p>The main tension was between flexibility and consistency. Too rigid and teams work around the library; too loose and it stops being a system. The solution was well-typed props with sensible defaults and clear documentation on extension points — giving teams guardrails without walls.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-mfe" onclick="closeModal(event, 'mfe')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal(null, 'mfe')">✕</button>
+    <div class="modal-eyebrow">Case Study · Micro Frontends</div>
+    <div class="modal-title">Micro Frontend Architecture in a Large Product Ecosystem</div>
+    <div class="modal-sub">Working with micro-frontend patterns at Mercado Livre and Invillia — modularity, independent deployability, and integration across teams.</div>
+
+    <div class="case-section">
+      <h3>The Context</h3>
+      <p>At both Mercado Livre and Invillia, I worked within large-scale frontend ecosystems where multiple teams needed to ship independently. Micro frontends were the architectural pattern that enabled this — each team owning their slice of the product with its own deploy pipeline and development cadence.</p>
+    </div>
+
+    <div class="case-section">
+      <h3>Architecture</h3>
+      <div class="case-arch">
+        <span class="hl">Shell App</span> (host)<br>
+        ├── <span class="hl">Remote: mfe-a</span> (Team A · independent deploy)<br>
+        ├── <span class="hl">Remote: mfe-b</span> (Team B · independent deploy)<br>
+        └── Shared: design-system, utils, auth (versioned packages)<br>
+        <br>
+        <span class="hl">Delivery</span><br>
+        └── Jenkins CI/CD · Docker · Kubernetes<br>
+        └── Monitoring: New Relic · Splunk · Kibana
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h3>Key Engineering Concerns</h3>
+      <p><strong>Shared dependencies:</strong> React must be shared as a singleton or hooks break across remote boundaries. Managing shared versions carefully was critical to stability.</p>
+      <p><strong>Modularity without isolation silos:</strong> Teams needed independence without losing visibility into each other's contracts. Clear interface definitions and monitoring across remotes kept integration healthy.</p>
+      <p><strong>Observability across boundaries:</strong> Distributed architecture means distributed failure modes. Integration with New Relic and Splunk gave visibility into which remote was contributing to a user-facing issue.</p>
+    </div>
+
+    <div class="case-section">
+      <h3>Trade-offs & Lessons</h3>
+      <p>Micro frontends optimize for team autonomy at the cost of additional infrastructure complexity. The right choice depends on team size and product scope — in large organizations like Mercado Livre, the autonomy gains far outweigh the coordination overhead of managing shared contracts.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── i18n ──────────────────────────────────────────────
+  const translations = {
+    en: {
+      'nav.about': 'About', 'nav.experience': 'Experience', 'nav.work': 'Work',
+      'nav.skills': 'Skills', 'nav.education': 'Education', 'nav.contact': 'Contact',
+      'nav.cta': 'Hire me',
+      'hero.sub': 'I build <strong>scalable front-end systems</strong> that serve millions of users — from architecture to production. Focused on impact, not just implementation.',
+      'hero.resume': 'Download Resume',
+      'hero.stat1': 'Years of experience', 'hero.stat2': 'Currently at Mercado Livre',
+      'hero.stat3': 'Languages spoken', 'hero.stat4': 'Cross-cultural collaboration',
+      'logos.label': 'Core Stack',
+      'about.eyebrow': 'About', 'about.title': 'Engineering at scale,<br>with intent.',
+      'about.p1': 'I\'m a Software Engineer who\'s spent the last 6+ years thinking deeply about how front-end systems are built — not just whether they work, but <strong>why they hold up under pressure</strong>. I\'ve shipped production code that millions of people rely on, and I\'ve felt the weight of that responsibility.',
+      'about.p2': 'My work spans the full front-end spectrum: architecting micro frontends, leading design systems, optimizing Core Web Vitals, and mentoring engineers. But the thread that connects it all is an obsession with <strong>software quality</strong> — not as a constraint, but as a craft.',
+      'about.p3': 'I work well across cultures and time zones. I\'ve collaborated with distributed teams across Latin America and understand what it takes to build trust asynchronously. <strong>Remote-first is not a compromise for me — it\'s where I do my best work.</strong>',
+      'about.card1label': 'Current Focus', 'about.card1val': 'Senior Front-end Engineering · Remote roles at international companies',
+      'about.card2label': 'Location', 'about.card2val': 'Brazil — available for any timezone',
+      'about.card3label': 'Languages', 'about.card4label': 'Availability', 'about.card4val': '● Available now',
+      'about.lang1': 'Portuguese (native)', 'about.lang2': 'English (intermediate)', 'about.lang3': 'Spanish (intermediate)',
+      'exp.eyebrow': 'Experience', 'exp.title': 'Where I\'ve created impact.',
+      'exp.ml.period': 'Oct 2022 — Present', 'exp.ml.promo': '· promoted Jan 2025',
+      'exp.ml.body': 'Develop and evolve <strong>micro-frontend applications</strong> using React and TypeScript, following Clean Architecture principles and maintainable frontend patterns. Design scalable frontend solutions for large product ecosystems, supporting modularity, code quality, and long-term maintainability.<br><br>Collaborate with <strong>Spanish-speaking teams across Latin America</strong> during planning, refinement, and delivery routines. Contribute to product evolution by implementing new features, validating business hypotheses, and improving experiences in beta and post-launch phases.<br><br>Use <strong>AI-assisted development tools</strong> such as Claude Code, Codex, and Cursor, as well as n8n automation workflows, to improve engineering productivity and delivery flow. Support application reliability through monitoring with New Relic, Kibana, Grafana, and Datadog.',
+      'exp.inv.period': 'Nov 2020 — Oct 2022', 'exp.inv.promo': '· started as Junior (Nov 2020)',
+      'exp.inv.body': 'Built micro-frontends using <strong>Next.js, React, and JavaScript</strong>, contributing to frontend products in active evolution. Helped define frontend architecture for new services using Docker and Kubernetes as part of the delivery environment.<br><br>Worked with CI/CD practices using Jenkins and supported application monitoring with <strong>New Relic and Splunk</strong>. Collaborated in agile delivery routines using Kanban to manage workflow and improve team visibility.',
+      'exp.casa.role': 'Public Employee',
+      'exp.casa.body': 'Built a strong foundation in adaptability, responsibility, and public-service discipline — values that shaped my approach to engineering before transitioning into technology in 2020.',
+      'skills.eyebrow': 'Skills', 'skills.title': 'Expertise across<br>the full front-end spectrum.',
+      'projects.eyebrow': 'Work', 'projects.title': 'Projects that moved<br>the needle.',
+      'projects.sub': 'Case studies focused on real problems, architectural decisions, and measurable results — not just tech stacks.',
+      'proj.readmore': 'Read case study', 'proj.case': 'Case Study',
+      'proj.replay.tag': '★ Featured Case Study', 'proj.replay.title': 'Session Replay Module',
+      'proj.replay.desc': 'Participated in building a production-grade session replay system at Mercado Livre — capturing user interactions in real time as part of the observability layer. Focused on performance, architecture, and monitoring integration.',
+      'proj.ds.title': 'Component Library & Design System',
+      'proj.ds.desc': 'Contributed to a shared component library used across product teams — working with Storybook documentation, design tokens, component reusability, and engineering standards.',
+      'proj.mfe.title': 'Micro Frontend Architecture',
+      'proj.mfe.desc': 'Worked with micro-frontend architecture using React and TypeScript at scale — contributing to modularity, independent deployability, and integration between applications in a large product ecosystem.',
+      'num.1': 'Years building software', 'num.2': 'Companies in tech (Invillia + Mercado Livre)',
+      'num.3': 'Teams across Latin America', 'num.4': 'Languages spoken', 'num.5': 'Commitment to quality',
+      'test.eyebrow': 'Testimonials', 'test.title': 'What colleagues say.',
+      'test.notice': 'I prefer to keep this section honest. <strong>Real recommendations from people I\'ve worked with</strong> are on my LinkedIn profile — engineers, tech leads, and product managers I\'ve collaborated with at Mercado Livre and Invillia.',
+      'test.link': 'View recommendations on LinkedIn',
+      'ai.eyebrow': 'AI-Assisted Engineering', 'ai.title': 'Engineering with AI as<br>a force multiplier.',
+      'ai.body': 'I actively use AI tools and automation in my daily workflow — not as a shortcut, but to <strong>eliminate repetitive overhead and focus on high-value engineering decisions</strong>. This is part of how I work at Mercado Livre today.',
+      'ai.tool1': 'AI-assisted development & code generation', 'ai.tool2': 'Workflow automation & developer productivity',
+      'ai.tool3': 'AI-powered editor for faster iteration', 'ai.tool4': 'Code completion & generation workflows',
+      'edu.eyebrow': 'Education & Certifications', 'edu.title': 'Foundation & continuous learning.',
+      'edu.academic': 'Academic', 'edu.certs': 'Certifications',
+      'edu.degree': 'Technologist in Systems Analysis and Development',
+      'contact.eyebrow': 'Contact', 'contact.title': 'Let\'s build something<br>worth shipping.',
+      'contact.sub': 'I\'m currently open to senior front-end roles at international companies — remote, full-time. If you\'re building something ambitious and care about software quality, I\'d love to talk.',
+      'form.name': 'Name', 'form.name.ph': 'Your name', 'form.email': 'Email',
+      'form.msg': 'Message', 'form.msg.ph': 'Tell me about the role or project...', 'form.submit': 'Send message →',
+      'footer.copy': '© 2026 Thiago Fidelis · Built with intent.', 'footer.resume': 'Resume',
+    },
+    pt: {
+      'nav.about': 'Sobre', 'nav.experience': 'Experiência', 'nav.work': 'Projetos',
+      'nav.skills': 'Habilidades', 'nav.education': 'Formação', 'nav.contact': 'Contato',
+      'nav.cta': 'Me contrate',
+      'hero.sub': 'Construo <strong>sistemas front-end escaláveis</strong> que servem milhões de usuários — da arquitetura à produção. Focado em impacto, não apenas em implementação.',
+      'hero.resume': 'Baixar Currículo',
+      'hero.stat1': 'Anos de experiência', 'hero.stat2': 'Atualmente no Mercado Livre',
+      'hero.stat3': 'Idiomas falados', 'hero.stat4': 'Colaboração multicultural',
+      'logos.label': 'Stack Principal',
+      'about.eyebrow': 'Sobre', 'about.title': 'Engenharia em escala,<br>com intenção.',
+      'about.p1': 'Sou um Engenheiro de Software com mais de 6 anos pensando profundamente em como sistemas front-end são construídos — não apenas se funcionam, mas <strong>por que resistem à pressão</strong>. Já entreguei código em produção do qual milhões de pessoas dependem, e sinto o peso dessa responsabilidade.',
+      'about.p2': 'Meu trabalho abrange todo o espectro do front-end: arquitetura de micro frontends, liderança de design systems, otimização de Core Web Vitals e mentoria de engenheiros. Mas o fio que conecta tudo é uma obsessão com <strong>qualidade de software</strong> — não como restrição, mas como ofício.',
+      'about.p3': 'Trabalho bem em diferentes culturas e fusos horários. Colaborei com times distribuídos por toda a América Latina e entendo o que é preciso para construir confiança de forma assíncrona. <strong>Trabalho remoto não é uma concessão para mim — é onde faço meu melhor trabalho.</strong>',
+      'about.card1label': 'Foco Atual', 'about.card1val': 'Engenharia Front-end Sênior · Vagas remotas em empresas internacionais',
+      'about.card2label': 'Localização', 'about.card2val': 'Brasil — disponível para qualquer fuso horário',
+      'about.card3label': 'Idiomas', 'about.card4label': 'Disponibilidade', 'about.card4val': '● Disponível agora',
+      'about.lang1': 'Português (nativo)', 'about.lang2': 'Inglês (intermediário)', 'about.lang3': 'Espanhol (intermediário)',
+      'exp.eyebrow': 'Experiência', 'exp.title': 'Onde criei impacto.',
+      'exp.ml.period': 'Out 2022 — Presente', 'exp.ml.promo': '· promovido em Jan 2025',
+      'exp.ml.body': 'Desenvolvo e evoluo <strong>aplicações micro-frontend</strong> com React e TypeScript, seguindo princípios de Clean Architecture e padrões de front-end sustentáveis. Projeto soluções front-end escaláveis para grandes ecossistemas de produto, priorizando modularidade, qualidade de código e manutenibilidade a longo prazo.<br><br>Colaboro com <strong>times hispanófonos na América Latina</strong> em rotinas de planejamento, refinamento e entrega. Contribuo para a evolução do produto implementando novas funcionalidades, validando hipóteses de negócio e melhorando experiências nas fases beta e pós-lançamento.<br><br>Utilizo <strong>ferramentas de desenvolvimento assistido por IA</strong> como Claude Code, Codex e Cursor, além de automações com n8n, para melhorar a produtividade e o fluxo de entrega. Apoio a confiabilidade das aplicações com monitoramento via New Relic, Kibana, Grafana e Datadog.',
+      'exp.inv.period': 'Nov 2020 — Out 2022', 'exp.inv.promo': '· começou como Júnior (Nov 2020)',
+      'exp.inv.body': 'Construí micro-frontends com <strong>Next.js, React e JavaScript</strong>, contribuindo para produtos front-end em evolução ativa. Ajudei a definir a arquitetura front-end de novos serviços usando Docker e Kubernetes como parte do ambiente de entrega.<br><br>Trabalhei com práticas de CI/CD usando Jenkins e apoiei o monitoramento de aplicações com <strong>New Relic e Splunk</strong>. Colaborei em rotinas ágeis de entrega usando Kanban para gerenciar o fluxo de trabalho e melhorar a visibilidade do time.',
+      'exp.casa.role': 'Servidor Público',
+      'exp.casa.body': 'Construí uma base sólida em adaptabilidade, responsabilidade e disciplina de serviço público — valores que moldaram minha abordagem à engenharia antes da transição para a tecnologia em 2020.',
+      'skills.eyebrow': 'Habilidades', 'skills.title': 'Expertise em todo<br>o espectro do front-end.',
+      'projects.eyebrow': 'Projetos', 'projects.title': 'Projetos que<br>fizeram a diferença.',
+      'projects.sub': 'Estudos de caso focados em problemas reais, decisões de arquitetura e resultados mensuráveis — não apenas listas de tecnologias.',
+      'proj.readmore': 'Ler estudo de caso', 'proj.case': 'Estudo de Caso',
+      'proj.replay.tag': '★ Estudo de Caso em Destaque', 'proj.replay.title': 'Módulo de Session Replay',
+      'proj.replay.desc': 'Participei da construção de um sistema de session replay em nível de produção no Mercado Livre — capturando interações de usuário em tempo real como parte da camada de observabilidade. Foco em performance, arquitetura e integração de monitoramento.',
+      'proj.ds.title': 'Biblioteca de Componentes & Design System',
+      'proj.ds.desc': 'Contribuí para uma biblioteca de componentes compartilhada usada por múltiplos times de produto — trabalhando com documentação em Storybook, design tokens, reutilização de componentes e padrões de engenharia.',
+      'proj.mfe.title': 'Arquitetura de Micro Frontends',
+      'proj.mfe.desc': 'Trabalhei com arquitetura de micro-frontend usando React e TypeScript em escala — contribuindo para modularidade, deploy independente e integração entre aplicações em um grande ecossistema de produto.',
+      'num.1': 'Anos construindo software', 'num.2': 'Empresas de tech (Invillia + Mercado Livre)',
+      'num.3': 'Times na América Latina', 'num.4': 'Idiomas falados', 'num.5': 'Compromisso com qualidade',
+      'test.eyebrow': 'Depoimentos', 'test.title': 'O que colegas dizem.',
+      'test.notice': 'Prefiro manter esta seção honesta. <strong>Recomendações reais de pessoas com quem trabalhei</strong> estão no meu perfil do LinkedIn — engenheiros, tech leads e gerentes de produto com quem colaborei no Mercado Livre e na Invillia.',
+      'test.link': 'Ver recomendações no LinkedIn',
+      'ai.eyebrow': 'Engenharia com IA', 'ai.title': 'IA como<br>multiplicador de força.',
+      'ai.body': 'Uso ativamente ferramentas de IA e automação no meu fluxo diário — não como atalho, mas para <strong>eliminar overhead repetitivo e focar em decisões de engenharia de alto valor</strong>. É assim que trabalho no Mercado Livre hoje.',
+      'ai.tool1': 'Desenvolvimento assistido por IA & geração de código', 'ai.tool2': 'Automação de workflows & produtividade',
+      'ai.tool3': 'Editor com IA para iteração mais rápida', 'ai.tool4': 'Workflows de completação & geração de código',
+      'edu.eyebrow': 'Formação & Certificações', 'edu.title': 'Base & aprendizado contínuo.',
+      'edu.academic': 'Acadêmico', 'edu.certs': 'Certificações',
+      'edu.degree': 'Tecnólogo em Análise e Desenvolvimento de Sistemas',
+      'contact.eyebrow': 'Contato', 'contact.title': 'Vamos construir algo<br>que vale a pena entregar.',
+      'contact.sub': 'Estou aberto a vagas sênior de front-end em empresas internacionais — remoto, tempo integral. Se você está construindo algo ambicioso e se importa com qualidade de software, adoraria conversar.',
+      'form.name': 'Nome', 'form.name.ph': 'Seu nome', 'form.email': 'E-mail',
+      'form.msg': 'Mensagem', 'form.msg.ph': 'Fale sobre a vaga ou projeto...', 'form.submit': 'Enviar mensagem →',
+      'footer.copy': '© 2026 Thiago Fidelis · Construído com intenção.', 'footer.resume': 'Currículo',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (t[key] !== undefined) el.placeholder = t[key];
+    });
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+    // Troca o link do currículo conforme idioma
+    const resumeEN = 'https://drive.google.com/file/d/1nm67wzixhf92T1DNdoaj79qGfO-6crhK/view?usp=drivesdk';
+    const resumePT = 'https://drive.google.com/file/d/15qEhQKWd_F0mVtu6pJxtNoQNXEv91nQs/view?usp=drivesdk';
+    const href = lang === 'pt' ? resumePT : resumeEN;
+    document.getElementById('resume-btn').href = href;
+    document.getElementById('footer-resume').href = href;
+  }
+
+  // ── Fade-in on scroll ──────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── Mobile menu ────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // ── Scroll spy ─────────────────────────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => spyObserver.observe(s));
+
+  // ── Modals ─────────────────────────────────────────────
+  function openModal(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(event, id) {
+    if (!event || event.target === event.currentTarget) {
+      document.getElementById('modal-' + id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => {
+        m.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+      closeMobile();
+    }
+  });
+</script>
+
+</body>
+</html>
